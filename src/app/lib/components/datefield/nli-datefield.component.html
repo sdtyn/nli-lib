@@ -1,0 +1,305 @@
+
+<fx-field class="nli-datepicker">
+
+    <div #datePicker tabindex="1" (blur)="onBlur(event)">
+        
+        
+        <!-- DATEPICKER INPUT -->
+        <div class="nli-datepicker-input-container">
+            <mat-input-container class="input-container inner-addon right-addon">
+                <nli-text name="date"
+                        inputLabel="{{label}}"
+                        [value]="inputValue"
+                        inputClass="my-input wizard-fields-common"
+                        errorMsg="Dieses Feld darf nicht leer sein"
+                        (keyup.enter)="formatEnteredStringToDate()"
+                        (focusout)="formatEnteredStringToDate()"
+                        >
+                </nli-text>
+                <button class="{{(!label)?'datepicker-opener-button-top':'datepicker-opener-button-bottom'}} datepicker-opener-button glyphicon glyphicon-calendar" (click)="onFocus(this)"></button>
+              </mat-input-container>
+        </div>
+
+
+        <!-- VIEWS -->
+
+        <div id="nli-datepicker-view-container" class="nli-datepicker-view-container {{(visibility)?'nli-datepicker-views-show':'nli-datepicker-views-hide'}}">
+           
+
+            <!-- VIEW-1: CURRENT MONTH -->
+            <div class="nli-calendar-main" *ngIf="state == DAYS">
+            
+                <div class="nli-calendar-header">
+                    <div class="nli-calendar-header-title">{{getSelectedDateTitle()}}</div>
+                    <div class="nli-calendar-header-content">{{getSelectedDateContent()}}</div>
+                </div>
+            
+                <div class="nli-calendar-current-month-and-year">
+            
+                    <table class="nli-calendar-current-month-and-year-table">
+                        <tr>
+                            <td class="link-button" (click)="prevMonthView()">
+                                <div><i class="nli-calendar-icon arrow-left"></i></div>
+                            </td>
+                            <td class="month-button">
+                                <!--div (click)="changeState(DAYS)" style="cursor:pointer">{{getSelectedDay()}}</div-->
+                                <div id="toogleMonthButton" class="nli-calendar-current-month-button" (click)="changeState(MONTHS)">{{getCurrentMonthName()}}</div>
+                            </td>
+                            <td class="year-button">
+                                <div id="toogleYearButton" (click)="changeState(YEARS)">{{getCurrentFullYear()}}</div>
+                            </td>
+                            <td class="time-button ">
+                                <div id="toogleTimeButton" (click)="displayTimeView(TIME)">{{getCurrentTime()}}</div>
+                            </td>
+                            <td class="right-button" (click)="nextMonthView()">
+                                <div><i class="nli-calendar-icon arrow-right"></i></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            
+                <div class="nli-calendar-table-container">
+                    <table class="nli-calendar-table">
+            
+                        <tr>
+                            <!--th style="width:30px; height:28px; text-align:center; vertical-align:middle;">{{dayName}}</th-->
+                            <!--th style="width:30px; height:28px; text-align:center; vertical-align:middle;">{{dayName}}</th-->
+                            <th *ngFor="let dayName of getDayNames()">{{dayName}}</th>
+                        </tr>
+            
+                        <tr *ngFor="let calendarWeek of calendarWeeks">
+                            <!--td style="width:30px; height:28px; text-align:center; vertical-align:middle; background-color:#d7d7d7;">{{calendarWeek.weekOfMonth}}</td-->
+                            <!--td style="width:30px; height:28px; text-align:center; vertical-align:middle; background-color:#d7d7d7;">{{calendarWeek.weekOfYear}}</td-->
+                            <td *ngFor="let calendarDay of calendarWeek.days" (click)="changeSelectedDate(calendarDay)">
+                                <div class="calendar-day-cell {{getCalendarDayClasses(calendarWeek, calendarDay)}}" >{{calendarDay.day}}</div>
+                            </td>
+                        </tr>
+            
+                    </table>
+                </div>
+            
+            
+            </div>
+            
+
+            <!-- VIEW-2: MONTH SELECTION -->
+            <div class="nli-calendar-months-main" *ngIf="state == MONTHS">
+            
+                <div class="nli-calendar-header">
+                    <div class="nli-calendar-header-title">{{getSelectedDateTitle()}}</div>
+                    <div class="nli-calendar-header-content">{{getSelectedDateContent()}}</div>
+                </div>
+            
+                <div class="nli-calendar-current-month-and-year">
+            
+                    <table class="nli-calendar-current-month-and-year-table">
+                        <tr>
+                            <td class="link-button" (click)="prevYear()">
+                                <div><i class="nli-calendar-icon arrow-left"></i></div>
+                            </td>
+                            <td class="year-button">
+                                <div id="toogleYearButton" (click)="changeState(YEARS)">{{getCurrentFullYear()}}</div>
+                            </td>
+                            <td class="right-button" (click)="nextYear()">
+                                <div><i class="nli-calendar-icon arrow-right"></i></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="nli-calendar-months-table">
+                    <table>
+            
+                        <tr>
+                            <td (click)="changeCurrentMonth(0)">
+                                <div class="{{getClassIfSelectedMonth(0)}}">{{getMonthNames(0)}}</div>
+                            </td>
+                            <td (click)="changeCurrentMonth(1)">
+                                <div class="{{getClassIfSelectedMonth(1)}}">{{getMonthNames(1)}}</div>
+                            </td>
+                            <td (click)="changeCurrentMonth(2)">
+                                <div class="{{getClassIfSelectedMonth(2)}}">{{getMonthNames(2)}}</div>
+                            </td>
+            
+                        </tr>
+            
+                        <tr>
+                            <td (click)="changeCurrentMonth(3)">
+                                <div class="{{getClassIfSelectedMonth(3)}}">{{getMonthNames(3)}}</div>
+                            </td>
+                            <td (click)="changeCurrentMonth(4)">
+                                <div class="{{getClassIfSelectedMonth(4)}}">{{getMonthNames(4)}}</div>
+                            </td>
+                            <td (click)="changeCurrentMonth(5)">
+                                <div class="{{getClassIfSelectedMonth(5)}}">{{getMonthNames(5)}}</div>
+                            </td>
+            
+                        </tr>
+            
+                        <tr>
+                            <td (click)="changeCurrentMonth(6)">
+                                <div class="{{getClassIfSelectedMonth(6)}}">{{getMonthNames(6)}}</div>
+                            </td>
+                            <td (click)="changeCurrentMonth(7)">
+                                <div class="{{getClassIfSelectedMonth(7)}}">{{getMonthNames(7)}}</div>
+                            </td>
+                            <td (click)="changeCurrentMonth(8)">
+                                <div class="{{getClassIfSelectedMonth(8)}}">{{getMonthNames(8)}}</div>
+                            </td>
+            
+                        </tr>
+            
+                        <tr>
+                            <td (click)="changeCurrentMonth(9)">
+                                <div class="{{getClassIfSelectedMonth(9)}}">{{getMonthNames(9)}}</div>
+                            </td>
+                            <td (click)="changeCurrentMonth(10)">
+                                <div class="{{getClassIfSelectedMonth(10)}}">{{getMonthNames(10)}}</div>
+                            </td>
+                            <td (click)="changeCurrentMonth(11)">
+                                <div class="{{getClassIfSelectedMonth(11)}}">{{getMonthNames(11)}}</div>
+                            </td>
+            
+                        </tr>
+            
+                    </table>
+                </div>
+            
+                <!-- <div class="nli-calendar-bottom-bar">
+                    <div class="nli-calendar-bottom-cancel">
+                        <div class="nli-calendar-bottom-button" (click)="changeState(DAYS)">Cancel</div>
+                    </div>
+                </div> -->
+            
+            </div>
+            
+            <!-- VIEW-3: YEAR SELECTION  -->
+            <div id="nli-calendar-years-main" class="nli-calendar-years-main" *ngIf="state == YEARS">
+            
+            
+                <div class="nli-calendar-header">
+                    <div class="nli-calendar-header-title">{{getSelectedDateTitle()}}</div>
+                    <div class="nli-calendar-header-content">{{getSelectedDateContent()}}</div>
+                </div>
+            
+                <div class="nli-calendar-years-table-container" >
+
+                    <div id="style-1" class="scrollbar">
+                        <div class="force-overflow">
+                            <table>                    
+                                <tr *ngFor="let year of selectableYears">
+                                    <td (click)="changeCurrentYear(year)">
+                                        <div>{{year}}</div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            
+            <!-- <div class="nli-calendar-bottom-bar">
+                <div class="nli-calendar-bottom-cancel">
+                    <div class="nli-calendar-bottom-button" (click)="changeState(DAYS)">Cancel</div>
+                </div>
+            </div> -->
+            
+            </div>
+            
+            <!-- VIEW-4: TIME SELECTION  -->
+            <div id="nli-calendar-time-main" class="nli-calendar-time-main" *ngIf="state == TIME && displayTime == true">
+            
+                <div class="nli-calendar-header">
+                    <div class="nli-calendar-header-title">{{getSelectedDateTitle()}}</div>
+                    <div class="nli-calendar-header-content">{{getSelectedDateContent()}} Uhr</div>
+                </div>
+        
+                <div class="nli-calendar-time-table-container">
+            
+                    <table>
+                        <tr>
+                            <td class="hours-up-button time-up-button" (click)="changeTime(1, null, null)">
+                                <div><i class="nli-calendar-icon arrow-up"></i></div>
+                            </td>
+                            <td class="empty-td-container">
+                                <!-- EMPTY TD -->
+                            </td>
+                            <td class="minutes-up-button time-up-button" (click)="changeTime(null, 1, null)">
+                                <div><i class="nli-calendar-icon arrow-up"></i></div>
+                            </td>
+                            <td class="empty-td-container {{(displayTime && displayTimeWithSeconds)?'visible':'invisible'}}">
+                                <!-- EMPTY TD -->
+                            </td>
+                            <td class="seconds-up-button time-up-button {{(displayTime && displayTimeWithSeconds)?'visible':'invisible'}}" (click)="changeTime(null, null, 1)">
+                                <div><i class="nli-calendar-icon arrow-up"></i></div>
+                            </td>
+                        </tr>
+            
+            
+                        <tr>
+                            <td class="hours-input-container">
+                                <div><input type="text" class="nli-calendar-time-input" value="{{timer.getHourString()}}" /> </div>
+                            </td>
+                            <td class="empty-td-container">
+                                <div>:</div>
+                            </td>
+                            <td class="minutes-input-container">
+                                <div><input type="text" class="nli-calendar-time-input" value="{{timer.getMinuteString()}}" /> </div>
+                            </td>
+                            <td class="empty-td-container {{(displayTime && displayTimeWithSeconds)?'visible':'invisible'}}">
+                                <div>:</div>
+                            </td>
+                            <td class="seconds-input-container {{(displayTime && displayTimeWithSeconds)?'visible':'invisible'}}">
+                                <div><input type="text" class="nli-calendar-time-input" value="{{timer.getSecondString()}}" /> </div>
+                            </td>
+                        </tr>
+            
+            
+                        <tr>
+                            <td class="hours-down-button time-down-button" (click)="changeTime(-1, null, null)">
+                                <div><i class="nli-calendar-icon arrow-down"></i></div>
+                            </td>
+                            <td class="empty-td-container">
+                                <!-- EMPTY TD -->
+                            </td>
+                            <td class="minutes-down-button time-down-button" (click)="changeTime(null, -1, null)">
+                                <div><i class="nli-calendar-icon arrow-down"></i></div>
+                            </td>
+                            <td class="empty-td-container {{(displayTime && displayTimeWithSeconds)?'visible':'invisible'}}">
+                                <!-- EMPTY TD -->
+                            </td>
+                            <td class="seconds-down-button time-down-button {{(displayTime && displayTimeWithSeconds)?'visible':'invisible'}}" (click)="changeTime(null, null, 1)">
+                                <div><i class="nli-calendar-icon arrow-down"></i></div>
+                            </td>
+                        </tr>
+                    </table>
+            
+                </div>
+            
+                <div class="nli-calendar-bottom-bar">
+                    <div class="nli-calendar-time-cancel">
+                        <div class="nli-calendar-time-bottom-button" (click)="changeState(DAYS)">Cancel</div>
+                    </div>
+                    <div class="nli-calendar-time-set">
+                        <div class="nli-calendar-time-bottom-button" (click)="setTheTime()">Set</div>
+                    </div>
+                </div>
+            
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+</fx-field>

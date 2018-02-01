@@ -1,0 +1,1 @@
+export { ExtendedDateAdapter } from './extended.date.adapter';

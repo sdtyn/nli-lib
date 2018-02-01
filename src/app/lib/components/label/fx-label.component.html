@@ -1,0 +1,4 @@
+<div *ngIf="!text" class="{{styleName}}">
+    <ng-content></ng-content>
+</div>
+<div *ngIf="text" class="{{styleName}}">{{text}}</div>

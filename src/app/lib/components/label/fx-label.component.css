@@ -1,0 +1,7 @@
+.fx_label {
+    width: 200px;
+    height: 30px;
+    padding: 4px;
+    background-color: coral;
+    float: inherit;
+}
