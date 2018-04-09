@@ -237,20 +237,26 @@
 }
 
 
-.nli-calendar-current-month-and-year-table td.month-button {
-    width: 50%;
-}
-
-.nli-calendar-current-month-and-year-table td.month-button div {
+.nli-calendar-current-month-and-year-table td.calendar-link-button-container {
     width: 100%;
-    padding-right: 5px;
-    cursor: pointer;
-    float: left;
-    text-align: right;
+    text-align: center;
+}
+.nli-calendar-current-month-and-year-table td.calendar-link-button-container div:hover {
+    color: #4f3d45;
 }
 
-.nli-calendar-current-month-and-year-table td.month-button div:hover {
+.calendar-link-button{
+    cursor: pointer;
+}
+
+.calendar-link-button:hover{
     color: #4f3d45;
+}
+
+.calendar-link-button-entry{
+    background-color: aqua;
+    width: 100%;
+    margin: auto;
 }
 
 .nli-calendar-current-month-and-year-table td.year-button {

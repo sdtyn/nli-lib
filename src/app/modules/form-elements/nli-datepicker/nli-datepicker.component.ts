@@ -10,7 +10,7 @@ export class NLIDatepicker {
 
   public options:any = {
     currentDate:{year:new Date().getFullYear(), month:new Date().getMonth(), day:new Date().getDate()},
-    displayTime:true,
+    displayTime:false,
     displayTimeWithSeconds:false
   };
 }

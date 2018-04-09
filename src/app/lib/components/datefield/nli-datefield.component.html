@@ -41,15 +41,12 @@
                             <td class="link-button" (click)="prevMonthView()">
                                 <div><i class="nli-calendar-icon arrow-left"></i></div>
                             </td>
-                            <td class="month-button">
-                                <!--div (click)="changeState(DAYS)" style="cursor:pointer">{{getSelectedDay()}}</div-->
-                                <div id="toogleMonthButton" class="nli-calendar-current-month-button" (click)="changeState(MONTHS)">{{getCurrentMonthName()}}</div>
-                            </td>
-                            <td class="year-button">
-                                <div id="toogleYearButton" (click)="changeState(YEARS)">{{getCurrentFullYear()}}</div>
-                            </td>
-                            <td class="time-button ">
-                                <div id="toogleTimeButton" (click)="displayTimeView(TIME)">{{getCurrentTime()}}</div>
+                            <td>                                
+                                <span class="calendar-link-button" (click)="changeState(MONTHS)">{{getCurrentMonthName()}}</span>
+                                    &nbsp;
+                                <span class="calendar-link-button" (click)="changeState(YEARS)">{{getCurrentFullYear()}}</span>
+                                    &nbsp;
+                                <span class="calendar-link-button" (click)="displayTimeView(TIME)" *ngIf="options.displayTime">{{getCurrentTime()}}</span>
                             </td>
                             <td class="right-button" (click)="nextMonthView()">
                                 <div><i class="nli-calendar-icon arrow-right"></i></div>
