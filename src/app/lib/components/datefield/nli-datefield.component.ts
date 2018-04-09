@@ -144,7 +144,9 @@ export class NLIDatefield extends Calendar implements AfterViewInit, ControlValu
     }
 
 		this._selectedDate = date;
-	}
+  }
+  
+  @Input()
 	public get selectedDate():Date
 	{
 		return this._selectedDate;
@@ -381,7 +383,7 @@ export class NLIDatefield extends Calendar implements AfterViewInit, ControlValu
 		return this.getDayNames(this.getLocale())[dayIndex];
 	}
 
-	public getDayNames(locale:string)
+	public getDayNames(locale:string):Array<string>
 	{		
 		if(!locale){
 			locale = this.locale;
