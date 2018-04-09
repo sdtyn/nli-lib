@@ -1,7 +1,0 @@
-<div class="fx-dropdown" ng-blur="closeDropDown(event)" tabindex="-1">
-    <input type="text" [value]="value" #input (focus)="openDropDown(event)" />
-    <button id="fx-dropdown-opener-button" class="fx-opener-button" (click)="openDropDown(event)">Open</button>
-    <div id="fx-dropdown-content" class="fx-dropdown-content" #fxDropDown *ngIf="visibility">
-        <ng-content></ng-content>
-    </div>
-</div>
