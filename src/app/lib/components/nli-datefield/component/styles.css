@@ -1,0 +1,974 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+.nli-datepicker {
+    position: relative;
+    /*display: inline-block;*/
+    font-family: 'Roboto', sans-serif; 
+}
+
+.width-500{
+    width: 500px;
+}
+
+.width-250{
+    width: 250px;
+}
+
+.width-50-percent{
+    width: 50%;
+}
+
+.width-100-percent{
+    width: 100%;
+}
+
+.nli-datepicker a:hover {
+    background-color: #ffffff
+}
+
+.nli-datepicker-opener{
+    float: left;
+    /*width: 100%;*/
+}
+
+.nli-datepicker-container
+{    
+    position: absolute;
+    margin: 0; 
+    padding:0;
+    z-index: 999;
+    /*border: #e7e7e7 1px solid;  */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.nli-datepicker-container:focus
+{
+    outline: none;
+}
+
+.nli-datepicker-calendar{
+    float: left;
+}
+
+.nli-datepicker-filters{
+    float: left;
+    width: 50%;
+    height: 290px;
+    padding: 20px;
+    color: #ffffff; 
+    background-color: #3fa9f3;     
+}
+
+.nli-datepicker-dropdown {
+    width: count(100%-20px);
+    outline: none;
+}
+.nli-datepicker-input-wrapper{
+    width: 100%;
+    float: left;
+}
+
+.nli-datepicker-input-container
+{  
+    display: inline-block;
+    margin-bottom:-10px;
+    width: 100%;
+}
+
+.nli-datepicker-filter-mode-input
+{    
+    padding-left: 5px; 
+}
+
+.nli-datepicker-filter-mode-input:hover
+{
+    background-color: #ffffff;
+    filter: drop-shadow(2px 2px 2px #999999);
+
+}
+
+.nli-datepicker-filter-opener-container
+{  
+    float: left;
+    /*padding: 0px 5px 2px 5px;*/
+    cursor: pointer;
+    margin-bottom: -10px;
+    width: 100%;
+}
+
+.nli-datepicker-filter-opener-container-label{
+    float: left;
+}
+
+.nli-datepicker-opener-button{
+    /*
+    width: 24px;
+    height: 24px;
+    margin-top: 26px; 
+    cursor: pointer;
+    border: none;    
+    outline: none;
+    overflow: hidden;
+    background-color: Transparent;
+    background-image: url("../assets/date-range-up.png");
+    background-position: center; 
+    background-repeat: no-repeat;
+    z-index: 997;
+    right: 22px;*/
+    width: 24px;
+    height: 24px;
+    margin-top: 26px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    background-color: Transparent;
+    background-image: url("../assets/date-range-up.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 997;
+    position: absolute;
+    right: 0;
+    top: -2px;
+}
+
+.nli-datepicker-filter-mode-opener-button{
+    /*position: absolute;*/
+    /*right: 4px; 
+    width: 24px;
+    height: 30px;
+    margin-top: 22px; 
+    cursor: pointer;
+    border: none;    
+    outline: none;
+    overflow: hidden;
+    background-color: Transparent;
+    background-image: url("../assets/date-range-up.png");
+    background-position: center; 
+    background-repeat: no-repeat;
+    z-index: 997;
+    right: 22px;*/
+
+    width: 24px;
+    height: 30px;
+    margin-top: 26px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    background-color: Transparent;
+    background-image: url("../assets/date-range-up.png");
+    background-repeat: no-repeat;
+    z-index: 997;
+    right: 0;
+    position: absolute;
+}
+
+.nli-datepicker-opener-button:hover{
+    background-image: url("../assets/date-range-hover.png");
+}
+
+.nli-datepicker-opener-button:active{
+    background-image: url("../assets/date-range-opened.png");
+}
+
+.nli-datepicker-input {
+    width: 100%;
+    height: 24px;
+    outline: none;
+    margin: 0!important;
+    border: 1px solid #d7d7d7;
+    position: absolute;
+    padding: 4px;
+    float: left;
+}
+
+.nli-datepicker-input:hover {
+    background-color: #f1f5fb;
+}
+
+.nli-datepicker-view-container 
+{
+    width: 100%;
+    /*position: absolute;*/
+    /*margin-top: 22px;*/
+    background-color: #ffffff;
+    overflow: auto;
+    /*box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);*/
+    z-index: 1;
+}
+
+.nli-datepicker-view-container a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/*.nli-datepicker-views-hide {
+    display: none;
+}*/
+
+/*.nli-datepicker-views-show {
+    display: block;
+}*/
+
+.nli-datepicker-filters-dropdown-container
+{
+    height: 50px;
+    margin: 5px 0 5px 0;
+}
+
+.nli-datepicker-filters-input-container
+{
+    height: 50px;
+    margin: 5px 0 5px 0;
+}
+
+.nli-datepicker-filters-button-container
+{
+    position: absolute;
+    right: 10px;
+    bottom:10px;
+}
+
+.nli-datepicker-filter-input{
+    background-color: #3288d0;
+    border: none;
+    color: #ffffff;   
+    padding-left: 5px;
+    padding-right: 5px; 
+    height: 25px;
+}
+
+.nli-datepicker-filter-dropdown{
+    border: none;
+    color: #ffffff;   
+    padding-left: 5px;
+    padding-right: 5px; 
+    height: 25px;
+    background-color: #3288d0;
+}
+
+.nli-datepicker-filter-dropdown option{
+    border: none;
+    color: #000000 !important; 
+    font-size: .9em;
+    padding-left: 5px;
+    padding-right: 5px; 
+    background-color: #ffffff !important;
+}
+
+.nli-datepicker-filter-dropdown option:hover{
+    background-color: #3288d0 !important;
+}
+
+.nli-datepicker-filter-button{
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.width-100-percent{
+    width: 100%;
+}
+.width-47-percent{
+    width: 47%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*** SCROLLBAR  ***/ 
+.scrollbar {
+	width: 100%;
+	overflow-y: scroll;
+}
+
+.height-240{
+	height: 240px;
+}
+
+.height-290{
+	height: 290px;
+}
+
+.force-overflow {
+    min-height: 240px;
+}
+
+
+#year-selection-scroll-bar::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+} 
+
+#year-selection-scroll-bar::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
+}
+
+#year-selection-scroll-bar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #d7d7d7;
+    background-color: #F5F5F5;
+}
+
+/* CALENDAR **/
+
+.nli-calendar-main {
+    background-color: #ffffff;
+    width: 100%;
+    /*border-left: 1px solid #e7e7e7;
+    border-right: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;*/
+    
+    border-top: 1px solid #f0f0f0;
+}
+
+.nli-calendar-triangle {
+    width: 0;
+    height: 0;
+    margin-left: 20px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid #4a85ce;
+}
+
+.nli-calendar-header {
+    background-color: #3fa9f3;
+    width: 100%;
+    /*height: 64px;*/
+    padding: 5px 20px 5px 20px;
+    text-align: center;
+    vertical-align: middle;
+    color: #ffffff;
+}
+
+.nli-calendar-header-title
+{
+    margin-top: 6px;
+    height: 12px;
+    vertical-align: bottom;
+    text-align: left;
+    font-size: 12px!important;
+}
+
+.nli-calendar-header-content
+{
+    text-align: left;
+    font-size: 24px!important;
+}
+
+.nli-calendar-current-month-and-year 
+{
+    font-size: 14px;
+    background-color: #ffffff;
+    width: 100%;
+    height: 48px;
+    text-align: center;
+    vertical-align: middle;
+    color: #000000;
+    opacity: 0.87;
+}
+
+.nli-calendar-current-month-and-year-table {
+    width: 100%;
+    height: 100%;
+}
+
+.nli-calendar-current-month-and-year-table td.link-button {
+    width: 30px;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.nli-calendar-current-month-and-year-table td.link-button div
+ {
+    padding: 10px;
+    opacity: 0.87;
+}
+
+.nli-calendar-current-month-and-year-table td.link-button div:hover 
+{    
+    opacity: 1;
+}
+
+.nli-calendar-current-month-and-year-table td.right-button {
+    width: 30px;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.nli-calendar-current-month-and-year-table td.right-button div 
+{
+    padding: 10px;
+    opacity: 0.87;
+}
+
+.nli-calendar-current-month-and-year-table td.right-button div:hover 
+{    
+    opacity: 1;
+}
+
+
+.nli-calendar-current-month-and-year-table td.calendar-link-button-container {
+    width: 100%;
+    text-align: center;
+}
+.nli-calendar-current-month-and-year-table td.calendar-link-button-container div:hover {
+    color: #4f3d45;
+}
+
+.calendar-link-button{
+    cursor: pointer;
+}
+
+.calendar-link-button:hover{
+    color: #4f3d45;
+}
+
+.calendar-link-button-entry{
+    background-color: aqua;
+    width: 100%;
+    margin: auto;
+}
+
+.nli-calendar-current-month-and-year-table td.year-button {
+    width: 50%;
+}
+
+.nli-calendar-current-month-and-year-table td.year-button div {
+    width: 100%;
+    padding-left: 5px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.nli-calendar-current-month-and-year-table td.year-button div:hover {
+    color: #4a85ce;
+}
+
+.nli-calendar-current-month-and-year-table td.time-button {
+    width: 50%;
+}
+
+.nli-calendar-current-month-and-year-table td.time-button div {
+    width: 100%;
+    padding-left: 5px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.nli-calendar-current-month-and-year-table td.time-button div:hover {
+    color: #4a85ce;
+}
+
+.nli-calendar-icon {
+    border: solid #000000;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    opacity: 0.87;
+}
+
+.nli-calendar-icon:hover{
+    opacity: 1;
+}
+
+.nli-calendar-table-container {
+    width: 100%;
+    padding: 0 10px 10px 10px;
+}
+
+table.nli-calendar-table {
+    width: 100%;
+    border-spacing: 5px;
+}
+
+table.nli-calendar-table tr {
+    padding: 2px;
+}
+
+table.nli-calendar-table tr th {
+    font-size: 12px;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    opacity: 0.54;
+}
+
+table.nli-calendar-table tr td {
+    font-size: 12px;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ffffff;
+    cursor: pointer;
+    opacity: 0.87;
+}
+
+table.nli-calendar-table tr td:hover {
+    background-color: rgb(210, 231, 255);
+}
+
+.nli-calendar-table td div{
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+}
+
+.nli-calendar-table td div div{
+    width: 100%;
+    height: 100%;
+    padding-top: 4px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.calendar-date-cell {
+    /*TODO*/
+}
+
+.calendar-current-day-cell {
+    color: #4a85ce;
+}
+
+.calendar-selected-range-cell {
+    background-color: #4a85ce!important;
+    color: #ffffff;
+}
+
+.nli-calendar-bottom-bar {
+    width: 100%;
+    height: 40px;
+    background-color: #4b86ce;
+}
+
+.nli-calendar-bottom-cancel {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.nli-calendar-bottom-button {
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    padding-top: 8px;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+
+/*.it-is-selected-passive-day{
+    background-color: #3fa9f3 !important;
+    border-radius: 50%;
+    color: #ffffff!important;
+    opacity: 0.2;
+}*/
+
+.calendar-day-cell {
+    width: 100%;
+    height: 100;
+    text-align: center;
+    vertical-align: middle;
+    color: #000000;
+}
+
+.active-day{
+    /*TODO: if you need*/
+}
+
+.passive-day{
+    opacity: 0.2;
+}
+
+.selected-day{
+    background-color: #3fa9f3 !important;
+    color: #ffffff!important;
+    border-radius: 50%;
+}
+
+.start-of-range{
+    border-radius: 4px 0 0 4px;
+    background-color: #3fa9f3 !important;
+}
+
+.end-of-range{
+    border-radius: 0 4px 4px 0;
+    background-color: #3fa9f3 !important;
+}
+
+.start-and-end-of-range{
+    border-radius: 4px 4px 4px 4px;
+    background-color: #3fa9f3 !important;
+}
+
+.day-in-range{
+    background-color: #cce3fc;
+}
+
+.day-is-today{
+    color: #3fa9f3!important;
+}
+
+.error-string{
+    font-size: 10px;
+    color:lightpink;
+}
+
+.error-container
+{
+    width:100%;
+    /*height: 100%;*/
+    padding: 20px 0 10px 0;
+}
+
+/****** MONTHS *********/
+
+.nli-calendar-months-main {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.nli-calendar-months-month-name {
+    text-align: right;
+    color: #ffffff;
+}
+
+.nli-calendar-months-table {
+    width: 100%;
+    padding-top: 30px;
+}
+
+.nli-calendar-months-table table {
+    width: 100%;
+    border-spacing: 2px;
+}
+
+.nli-calendar-months-table table td {
+    width: 34px;
+    height: 60px;
+    padding: 2px;
+    cursor: pointer;
+    opacity: 0.87;
+}
+
+.nli-calendar-months-table table td div {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle !important;
+    background-color: #ffffff;
+}
+
+.nli-calendar-months-table table td div:hover {
+    color: #4aa9f5;
+}
+
+.nli-calendar-months-main .nli-calendar-current-month-and-year-table .year-button
+{
+    width: 100%;
+    text-align: center;
+}
+
+.nli-calendar-months-main .nli-calendar-current-month-and-year-table .year-button div
+{
+    width: 100%;
+    text-align: center;
+}
+
+.current-month{
+    color: #3fa9f3 !important;
+}
+
+/****  YEARS *******/
+
+.nli-calendar-years-main {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.nli-calendar-years-header {
+    width: 100%;
+    height: 40px;
+    background-color: #4b86ce;
+}
+
+.nli-calendar-years-header div {
+    width: 100%;
+    padding-top: 8px;
+}
+
+.nli-calendar-years-current-year {
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.nli-calendar-years-table-container {
+    width: 100%;
+}
+
+
+.nli-calendar-years-main table {
+    width: 100%;
+    border-spacing: 2px;
+}
+
+.nli-calendar-years-main table td {
+    width: 40px;
+    height: 31px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    opacity: 0.87;
+    background-color: #ffffff;
+}
+
+.year-color-centered{
+    font-size: 22px;
+}
+
+.year-color-selected{    
+    color:#4aa9f5;
+}
+
+.nli-calendar-years-main table td:hover {
+    background-color: #f9f9f9;
+}
+
+.nli-calendar-years-main table td div {
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+}
+
+.nli-calendar-year-button {
+    margin: auto;
+}
+
+.nli-calendar-up-button {
+    height: 10px;
+}
+
+.nli-calendar-up-button {
+    padding-top: 5px;
+}
+
+.nli-calendar-down-button {
+    height: 10px;
+    padding-bottom: 5px;
+}
+
+.nli-calendar-down-button {
+    margin: auto;
+}
+
+
+/*** TIME ***/
+
+.nli-calendar-time-main {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.nli-calendar-time-header {
+    width: 100%;
+    height: 40px;
+    background-color: #4b86ce;
+}
+
+.nli-calendar-time-header-current-time {
+    width: 100%;
+    height: 100%;
+    padding-top: 8px;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.nli-calendar-time-table-container {
+    padding: 10px;
+}
+
+.nli-calendar-time-main table {
+    width: 100%;
+    border-spacing: 2px;
+}
+
+.nli-calendar-time-main table td {
+    width: 30px;
+    height: 22px;
+    color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.nli-calendar-time-main table td.empty-td-container {
+    width: 6px;
+    height: 100%;
+    color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.nli-calendar-time-main table td div:hover {
+    background-color: #f9f9f9;
+}
+
+.nli-calendar-time-main table td div {
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+    background-color: #ffffff;
+}
+
+.nli-calendar-time-input {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #cfcfcf;;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.nli-calendar-time-cancel {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+.nli-calendar-time-set {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+.nli-calendar-time-bottom-button {
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid #ffffff;
+    color: #ffffff;
+    padding-top: 8px;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.nli-calendar-time-bottom-button:hover {
+    background-color: #3a72b8;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.arrow-right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    cursor: pointer;
+}
+
+.arrow-left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    cursor: pointer;
+}
+
+.arrow-up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    cursor: pointer;
+}
+
+.arrow-down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    cursor: pointer;
+}
+
+.time-up-button {
+    text-align: center;
+}
+
+.invisible {
+    display: none;
+}
+
+.visible {
+    display: table-cell;
+}
+
+
+.mouse-disabled{
+    cursor: not-allowed;
+}
+
+/******* NLI TEXT INPUT *****/
+/*
+It should be main css 
+.error-label{
+    margin-top:0 !important;
+}*/
+.error-label{
+    font-size: 11px;
+    color: #f50000;
+    /*margin-top: -10px!important;*/
+    cursor: pointer!important;
+}
+
+.date-field-error-label{
+    overflow-wrap: break-word;
+    text-align: left !important;
+    width: 100% !important;
+    float: left;
+}
+
+.date-field-filter-mode-error-label {
+    overflow-wrap: break-word;
+    text-align: left !important;
+    /* width: 100px !important; */
+    /* float: left; */
+    /* width: 100%; */
+    box-sizing: border-box;
+    padding-right:10px; 
+}
+.pointer-events-none{
+    pointer-events:none;
+}

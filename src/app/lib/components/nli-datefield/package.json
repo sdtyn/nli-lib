@@ -1,0 +1,25 @@
+{
+  "name": "@next-level-integration.com/nli-datefield",
+  "version": "0.0.4",
+  "description": "NLI-Datefield component",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdtyn/nli-lib.git"
+  },
+  "dependencies": {
+    "@next-level-integration/nli-input-lib": "2.0.11"
+  },
+  "keywords": [
+    "datefield"
+  ],
+  "author": "Sedat Yeni <syeni@next-level-integration.com> (https://github.com/sdtyn)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sdtyn/nli-lib/issues"
+  },
+  "homepage": "https://github.com/sdtyn/nli-lib#readme"
+}

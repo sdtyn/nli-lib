@@ -1,0 +1,204 @@
+<!-- WRAPPER-->
+<div id="nli-datepicker"
+     class="nli-datepicker {{classes}}"
+     (clickOutside)="clickedOutsideOfDateField($event)">
+
+    <!--  DATEPICKER INPUTS -->
+    <div [formGroup]="dateFieldForm">
+        <!--  WITHOUT FILTERED DATEPICKER INPUT -->
+        <div class="nli-datepicker-input-wrapper" *ngIf="!options.filterMode">
+            <div class="nli-datepicker-opener nli-datepicker-input-container">                 
+                <nli-text #dateInput
+                        name="dateInput"
+                        [inputLabel]="label"
+                        formArrayName="dateInput"
+                        [formControl]="(dateFieldForm.controls['dateInput'])"
+                        [(ngModel)]="inputValue"
+                        class="mat-form-field-appearance-legacy {{options.readOnly?'pointer-events-none':''}}"
+                        (change)="formatEnteredStringToDate($event)"></nli-text>
+            </div>
+            <button class="nli-datepicker-opener-button glyphicon" (click)="onFocus(this)" *ngIf="!options.readOnly"></button>          
+            <div *ngIf="dateFieldForm.get('dateInput').errors &&
+                        dateFieldForm.get('dateInput').errors.error" class="error-label date-field-error-label">
+                    {{dateFieldForm.get('dateInput').errors.errorString}}
+            </div>
+        </div><!--  /WITHOUT FILTERED DATEPICKER INPUT -->
+
+        <!--  DATEPICKER INPUT -->
+        <div class="nli-datepicker-input-wrapper nli-datepicker-filter-mode-input" 
+             *ngIf="options.filterMode" 
+             (click)="onFocus(this)"
+              title="{{label+': '+inputValue}}">
+            <div class="nli-datepicker-opener nli-datepicker-filter-opener-container">       
+                    
+                <nli-text #dateFilterInput
+                        name="dateFilterInput"
+                        [inputLabel]="label"
+                        [readonly]="options.readOnly"
+                        [(ngModel)]="inputValue"
+                        [formControl]="dateFieldForm.controls['dateFilterInput']"
+                        readonly="readonly"
+                        class="pointer-events-none"
+                        style="overflow:hidden !important; white-space:nowrap !important; text-overflow: ellipsis!important; "></nli-text>
+            </div>
+            <button class="nli-datepicker-filter-mode-opener-button glyphicon"></button>
+            <div *ngIf="dateFieldForm.get('dateFilterInput').errors &&
+                        dateFieldForm.get('dateFilterInput').errors.error" class="error-label date-field-filter-mode-error-label">
+                    {{dateFieldForm.get('dateFilterInput').errors.errorString}}
+            </div>
+        </div><!-- / FILTERED DATEPICKER INPUT -->
+    </div><!-- /DATEPICKER INPUTS -->
+
+    <!-- CONTAINER -->
+    <div #datePicker 
+         *ngIf="visibility"
+         class="nli-datepicker-container {{(options.filterMode)? 'width-500': 'width-250'}}" 
+         tabindex="0" 
+         (contentEditable)="onBlur($event)">
+        <!-- CALENDAR -->
+        <div #views class="nli-datepicker-calendar {{(options.filterMode)? 'width-50-percent': 'width-100-percent'}}" >
+            <!-- VIEWS -->
+            <div id="nli-datepicker-view-container" class="nli-datepicker-view-container">
+            
+                <!-- VIEW-1: CURRENT MONTH -->
+                <div class="nli-calendar-main" *ngIf="state == 'days'">
+                
+                    <div class="nli-calendar-header" *ngIf="!options.filterMode">
+                        <div class="nli-calendar-header-title">{{getSelectedYearLabel()}}</div>
+                        <div class="nli-calendar-header-content">{{getSelectedDateLabel()}}</div>
+                    </div>
+                
+                    <div class="nli-calendar-current-month-and-year">
+                
+                        <table class="nli-calendar-current-month-and-year-table">
+                            <tr>
+                                <td class="link-button" (click)="prevMonthView()">
+                                    <div><i class="nli-calendar-icon arrow-left"></i></div>
+                                </td>
+                                <td>                                
+                                    <span class="calendar-link-button" (click)="changeState('months')">{{getCurrentMonthLabel()}}</span>
+                                        &nbsp;
+                                    <span class="calendar-link-button" (click)="changeState('years')">{{getCurrentFullYearLabel()}}</span>
+                                </td>
+                                <td class="right-button" (click)="nextMonthView()">
+                                    <div><i class="nli-calendar-icon arrow-right"></i></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>                
+                    <div class="nli-calendar-table-container">
+                        <table class="nli-calendar-table">                
+                            <tr>
+                                <th *ngFor="let dayName of getDayNames()">{{dayName}}</th>
+                            </tr>                
+                            <tr *ngFor="let calendarWeek of calendarWeeks">
+                                <td *ngFor="let calendarDay of calendarWeek.days">
+                                    <div class="calendar-day-cell" (click)="selectADay(calendarDay)">
+                                        <div class="{{getStateOfDayCell(calendarWeek, calendarDay)}}">{{calendarDay.day}}</div>
+                                    </div>
+                                </td>
+                            </tr>                
+                        </table>
+                    </div>
+                </div><!-- /VIEW-1: CURRENT MONTH -->            
+
+                <!-- VIEW-2: MONTH SELECTION -->
+                <div id="nli-calendar-months-main" class="nli-calendar-months-main" *ngIf="state == 'months'">                
+                    <div class="nli-calendar-header" *ngIf="!options.filterMode">
+                        <div class="nli-calendar-header-title">{{getSelectedYearLabel()}}</div>
+                        <div class="nli-calendar-header-content">{{getSelectedDateLabel()}}</div>
+                    </div>
+                    <div class="nli-calendar-years-table-container" >
+                        <div class="nli-calendar-months-table">
+                            <table>                
+                                <tr *ngFor="let monthsGroup of monthList()">
+
+                                    <td id="nli-calendar-months-table-td-{{month.key}}" (click)="selectCurrentMonth(month.index)" *ngFor="let month of monthsGroup">
+                                        <div  id="nli-calendar-months-table-td-div-{{month.key}}" class="{{(currentDate.getMonth() == month.index)?'current-month':''}}">{{month.key}}</div>
+                                    </td>       
+                                </tr>            
+                            </table>
+                        </div>  
+                    </div>              
+                </div><!-- /VIEW-2: MONTH SELECTION -->
+                
+                <!-- VIEW-3: YEAR SELECTION  -->
+                <div id="nli-calendar-years-main" class="nli-calendar-years-main" *ngIf="state == 'years'">
+                    <div class="nli-calendar-header" *ngIf="!options.filterMode">
+                        <div class="nli-calendar-header-title">{{getSelectedYearLabel()}}</div>
+                        <div class="nli-calendar-header-content">{{getSelectedDateLabel()}}</div>
+                    </div>                
+                    <div class="nli-calendar-years-table-container" >
+                        <div id="year-selection-scroll-bar" class="scrollbar {{(options.filterMode)?'height-290':'height-240'}}" 
+                             (mouseWheel)="yearSelectionMouseWheelFunc($event)" (scroll)="changeYearSelectionList($event)">
+                            <div class="force-overflow">
+                                <table>                    
+                                    <tr id="year-line-{{year}}" *ngFor="let year of selectableYears">
+                                        <td (click)="selectCurrentYear(year)">
+                                            <div class="{{(centeredYearInYearSelection == year && currentDate.getFullYear() == year) ?'year-color-centered year-color-selected' :((centeredYearInYearSelection == year) ?'year-color-centered':(((currentDate.getFullYear() == year) ?'year-color-selected':'')))}}" >{{year}}</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>                            
+                </div><!-- /VIEW-3: YEAR SELECTION  -->                
+            </div><!-- /VIEWS  -->
+        </div><!-- CALENDAR -->
+
+        <!-- FILTERS -->
+        <div #filter class="nli-datepicker-filters" *ngIf="options.filterMode">    
+            <div class="nli-datepicker-filters-dropdown-container">
+                {{lang.get('time-span')}}<br>
+                <select #timeSpanDropDown 
+                        class="nli-datepicker-filter-dropdown width-100-percent" 
+                        (change)="timeSpanItemChange($event)">
+                    
+                        <option [value]="item.key" [attr.selected]="item.selected=='selected'? item.selected : null" *ngFor="let item of timeSpanDataProvider">{{item.label}}</option>                        
+
+                </select>
+            </div>            
+            <div class="nli-datepicker-filters-input-container">
+                {{lang.get('from')}}<br>
+                <input #filterStartDateInput type="text"  
+                                             class="nli-datepicker-filter-input width-47-percent" 
+                                             [value]="filterStartDateInputValue"
+                                             maxlength="10"
+                                             onkeyup="this.value = this.value.replace(/[^0-9\.]/, '')" 
+                                             (change)="filterInputChange($event)"
+                                             (focusout)="filterStartDateInputFocusOut($event)" />&nbsp;&nbsp; 
+                <input #filterStartTimeInput type="text" 
+                                             class="nli-datepicker-filter-input width-47-percent" 
+                                             [value]="filterStartTimeInputValue"
+                                             onkeyup="this.value = this.value.replace(/[^0-9\:]/, '')"
+                                             maxlength="5"
+                                             (change)="filterInputChange($event)"
+                                             (focusout)="filterStartTimeInputFocusOut($event)" />
+            </div>            
+            <div class="nli-datepicker-filters-input-container">
+                {{lang.get('to')}}<br>
+                <input #filterEndDateInput type="text" 
+                                           class="nli-datepicker-filter-input width-47-percent" 
+                                           [value]="filterEndDateInputValue"
+                                           onkeyup="this.value = this.value.replace(/[^0-9\.]/, '')"
+                                           (change)="filterInputChange($event)"
+                                           maxlength="10"
+                                           (focusout)="filterEndDateInputFocusOut($event)" />&nbsp;&nbsp;          
+                <input #filterEndTimeInput type="text" 
+                                           class="nli-datepicker-filter-input width-47-percent" 
+                                           [value]="filterEndTimeInputValue"
+                                           onkeyup="this.value = this.value.replace(/[^0-9\:]/, '')"
+                                           maxlength="5"
+                                           (change)="filterInputChange($event)"
+                                           (focusout)="filterEndTimeInputFocusOut($event)" />
+            </div>
+            <div class="error-string error-container">{{filterError}}</div>
+            <div class="nli-datepicker-filters-button-container">
+                <input type="button" class="nli-datepicker-filter-button" value="ABBRECHEN" (click)="timeSpanCancelButtonClick()" />&nbsp;&nbsp; 
+                <input type="button" class="nli-datepicker-filter-button" value="OK" (click)="timeSpanOkButtonClick()" />
+            </div>           
+        </div><!-- /FILTERS -->
+
+    </div><!-- CONTAINER -->
+
+</div><!-- WRAPPER-->

@@ -1,16 +1,14 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NLIDatefield } from './components/datefield/nli-datefield.component';
+import { NLIDatefield } from './components/nli-datefield/component/nli-datefield';
 
-import { LibModule as NliInputModule} from '@next-level-integration/nli-input-lib';
 @NgModule({
   declarations: [
     NLIDatefield
   ],
   imports: [
-    CommonModule,
-    NliInputModule
+    CommonModule
   ],
   exports: [NLIDatefield],
   providers: [],

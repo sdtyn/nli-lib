@@ -1,0 +1,61 @@
+<div class="wrapper">
+  <!-- Sidebar Holder -->
+  <nav id="sidebar">
+      <div class="sidebar-header">
+          <img style="cursor: pointer;" 
+                onclick="javascript:window.open('http://www.next-level-integration.com','_blank')" 
+                src="http://www.next-level-integration.com/fileadmin/templates/images/logo.png" />
+      </div>
+
+      <ul class="list-unstyled components">
+          <!--p>Dummy Heading</p-->
+
+          <!--li class="active"><a routerLink="/dashboards" routerLinkActive="active">Dashboards</a></li-->
+          <li class="dropdown">
+              <a href="#uicomponentsSubmenu" data-toggle="collapse in" aria-expanded="false">UI Elements</a>
+              <ul class="collapse in list-unstyled" id="uicomponentsSubmenu">
+                  <!--li><a routerLink="/formelements/textinput">Input</a></li-->
+                  <li><a routerLink="/formelements/datepicker">Datepicker</a></li>
+                  <!-- <li><a routerLink="/uielements/ng2-daterangepicker">ng2-daterangepicker</a></li> -->
+              </ul>
+          </li>
+          <!--li><a routerLink="/tables">Tables</a></li-->
+
+      </ul>
+
+  </nav>
+
+  <!-- Page Content Holder -->
+  <div id="content">
+
+      <!--nav id="top-nav" class="navbar navbar-default">
+          <div class="container-fluid">
+              <div class="navbar-header">
+                  <div class="navbar-header-first-colum">
+                      <button type="button" id="sidebarCollapse" class="nav-sidebar-button"></button>
+                      <div class="navbar-title-container">
+                          <a class="navbar-title" href="#">{{title}}</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="collapse navbar-collapse" id="myNavbar">
+                  <ul class="nav navbar-nav navbar-right">
+                      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                  </ul>
+              </div>
+          </div>
+      </nav-->
+
+      <div id="router-container">
+          <div style="position:absolute;" class="bg-white full-width full-height padding-10 item-border-top">
+              <router-outlet></router-outlet>
+          </div>
+      </div>
+
+      <div id="footer">
+          <div class="footer-content padding-10">Copyright Example Company © 2018</div>
+      </div>
+
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div style="height:100%;">
+
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>OVERVIEW</ng-template>
+            
+            <div style="padding: 40px; height: 100%;">
+
+                    <nli-datefield classes="width-120"[configs]="optionsDefault" label="Datum" [selectedDate]="tomorrow" (changed)="onChange($event)"></nli-datefield>
+                    <br><br><br><br>
+                    <nli-datefield [configs]="optionsWithSelectableRangeForBirthday" label="Geburtsdatum" [selectedDate]="null" (changed)="onChange($event)"></nli-datefield>
+                    <br><br><br><br>
+                    <nli-datefield [configs]="optionsWithSelectableRange" label="Datum" [selectedDate]="tomorrow" (changed)="onChange($event)"></nli-datefield>
+                    <br><br><br><br>
+        
+                    <nli-datefield classes="width-250"  [configs]="optionsWithoutSeletableRangeForFiltered" label="Select a range" [selectedDate]="tomorrow" (changed)="onChange($event)"></nli-datefield>
+                    <br><br><br><br>
+        
+                    <nli-datefield classes="width-250" [configs]="optionsWithSeletableRangeForFiltered" label="Zeitraum" [selectedDate]="tomorrow" (changed)="onChange($event)"></nli-datefield>
+
+            </div>
+            
+
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>API</ng-template>
+            <h1>implemented not yet</h1>
+
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>EXAMPLES</ng-template>
+            <h1>implemented not yet</h1>
+
+        </mat-tab>
+
+    </mat-tab-group>
+
+</div>
