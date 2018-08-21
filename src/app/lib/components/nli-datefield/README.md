@@ -42,7 +42,7 @@ Value of the options attribute is a type of DateFieldOptions. It can contain the
 
 
 | Option        | Default       | Type  | Description |
-| ------------- |:-------------| :-----| :-----------|
+| :------------- |:-------------| :-----| :-----------|
 | currentDate   | 	Today	 			| Date  | Default is displayed the date on Date picker |
 | selectableRange | new DateRange(null, null)      |   DateRange | Selectable date span |
 | filterMode | false      |    Boolean | The range picker is activated with this option |
