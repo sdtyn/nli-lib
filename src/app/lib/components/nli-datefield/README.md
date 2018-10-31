@@ -5,19 +5,16 @@
 
 Compatible with Angular5 version.
 
-Online demo is here
-
-
 ### Installation
 To install this component to an external project, follow the procedure:
 
 1. npm install nli-datefield --save
 
-2. Run npm install in project folder (The home folder that `package.json` exists): `npm install` This command downloads all dependencies including `@next-level-integration/nli-datefield`. You can also download just this module with: npm install `@next-level-integration/nli-datefield`
+2. Run npm install in project folder (The home folder that `package.json` exists): `npm install` This command downloads all dependencies including `@next-level-integration/nli-datefield-lib`. You can also download just this module with: npm install `@next-level-integration/nli-datefield-lib`
 
 5. Import input module to your project. In your main module (or module that you want use this component) that its default name is `app.module.ts`, import it:
 
-		import { NLIDateFieldModule } from '@next-level-integration/nli-datefield/datefield.module';
+		import { NLIDateFieldModule } from '@next-level-integration/nli-datefield-lib/datefield.module';
 		...
 		@NgModule({
 		  ...
